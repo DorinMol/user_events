@@ -35,5 +35,5 @@ async def login(user: UserAuth, db: SessionLocal = Depends(get_db)):
             detail="Ivalid data.",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    access_token = create_access_token(db_user.email)
+    access_token = create_access_token(db_user.id)
     return {"access_token": access_token, "token_type": "bearer"}

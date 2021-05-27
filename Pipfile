@@ -11,6 +11,8 @@ configparser = "*"
 psycopg2-binary = "*"
 python-jose = {extras = ["cryptography"], version = "*"}
 passlib = {extras = ["bcrypt"], version = "*"}
+alembic = "*"
+fastapi-utils = "*"
 
 [dev-packages]
 flake8 = "*"

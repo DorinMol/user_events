@@ -10,12 +10,11 @@ class EventBase(BaseModel):
 
 
 class EventCreate(EventBase):
-    pass
-
-
-class Event(EventBase):
-    id: int
     owner_id: int
+
+
+class Event(EventCreate):
+    id: int
 
     class Config:
         orm_mode = True

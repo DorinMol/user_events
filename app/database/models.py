@@ -1,6 +1,6 @@
-from sqlalchemy import Column, ForeignKey, Integer, String
+from sqlalchemy import Column, ForeignKey, Integer, String, Enum
 from sqlalchemy.orm import relationship
-
+from app.models.user import UserRoleEnum
 from .database import Base
 
 
@@ -11,6 +11,7 @@ class User(Base):
     name = Column(String, index=True)
     email = Column(String, unique=True, index=True)
     password = Column(String)
+    role = Column(Enum(UserRoleEnum), default=UserRoleEnum.user)
 
     events = relationship("Event", back_populates="owner")
 

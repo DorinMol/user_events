@@ -1,7 +1,13 @@
 from typing import List
 from pydantic import BaseModel
-
+from enum import auto
+from fastapi_utils.enums import StrEnum
 from .event import Event
+
+
+class UserRoleEnum(StrEnum):
+    admin = auto()
+    user = auto()
 
 
 class UserBase(BaseModel):

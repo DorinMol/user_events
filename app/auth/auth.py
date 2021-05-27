@@ -6,7 +6,7 @@ from jose import JWTError, jwt
 from passlib.context import CryptContext
 from pydantic import BaseModel
 from .utils import verify_password
-from ..database.crud.users import get_by_email
+from ..database.crud.users import get_by_id
 from ..database.database import SessionLocal
 from ..models.user import User
 from sqlalchemy.orm import Session
@@ -30,7 +30,7 @@ def get_db():
 
 
 class TokenData(BaseModel):
-    username: Optional[str] = None
+    user_id: Optional[int] = None
 
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
@@ -42,9 +42,9 @@ def authenticate_user(password: str, password_to_check: str):
     return verify_password(password_to_check, password)
 
 
-def create_access_token(username):
+def create_access_token(id: int):
     access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
-    data = {"sub": username}
+    data = {"sub": str(id)}
     to_encode = data.copy()
     if access_token_expires:
         expire = datetime.utcnow() + access_token_expires
@@ -61,16 +61,15 @@ async def get_current_user(token: str = Depends(oauth2_scheme),
         status_code=status.HTTP_401_UNAUTHORIZED,
         detail="Could not validate credentials",
         headers={"WWW-Authenticate": "Bearer"})
-
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-        username: str = payload.get("sub")
-        if username is None:
+        user_id: str = payload.get("sub")
+        if user_id is None:
             raise credentials_exception
-        token_data = TokenData(username=username)
+        token_data = TokenData(user_id=user_id)
     except JWTError:
         raise credentials_exception
-    user = get_by_email(db, email=token_data.username)
+    user = get_by_id(db, user_id=token_data.user_id)
     if user is None:
         raise credentials_exception
     return user
