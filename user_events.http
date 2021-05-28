@@ -1,0 +1,79 @@
+### GET ALL USERS
+GET http://localhost:8000/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyIiwiZXhwIjoxNjIyMTQ2OTcwfQ.JEolKe3H0kAgqjMOpxj37LQ1Ao20P0VXwKPZ6JYlEuc
+
+
+### CREATE USER
+POST http://localhost:8000/users
+Content-Type: application/json
+
+{
+    "name": "John",
+    "email": "john@gmail.com",
+    "password": "my_password"
+}
+
+
+### AUTH USER
+POST http://localhost:8000/token
+Content-Type: application/json
+
+{
+    "email": "john@gmail.com",
+    "password": "my_password"
+}
+
+
+### CREATE EVENT
+POST http://localhost:8000/events
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzIiwicm9sZSI6InVzZXIiLCJleHAiOjE2MjIyMzQ2MDN9.E-XVGeBhSKbfK3wN3VQ4g79Vl2so_sv1Puwln86LOBg
+
+{
+    "title":"Party time 55",
+    "description": "party time event will be awesome 2",
+    "content": "This will be the finest party ever...wohooo 2",
+    "owner_id": 4
+
+}
+
+
+### GET ALL EVENTS
+GET http://localhost:8000/events
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyIiwicm9sZSI6ImFkbWluIiwiZXhwIjoxNjIyMjM2MTA1fQ.FIo482gY6ZB_4cIVfwPIv2pDU5qcLkbKSjX6bTJX4bw
+
+
+### GET OWNER EVENTS
+GET http://localhost:8000/events/2
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyIiwicm9sZSI6ImFkbWluIiwiZXhwIjoxNjIyMjM2MTA1fQ.FIo482gY6ZB_4cIVfwPIv2pDU5qcLkbKSjX6bTJX4bw
+
+
+### UPDATE EVENT
+PUT http://localhost:8000/events
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyIiwicm9sZSI6ImFkbWluIiwiZXhwIjoxNjIyMjM2MTA1fQ.FIo482gY6ZB_4cIVfwPIv2pDU5qcLkbKSjX6bTJX4bw
+
+{
+    "title":"Party time 12",
+    "description": "party time event will be awesome 2",
+    "content": "This will be the finest party ever...wohooo 2",
+    "id": 4
+
+}
+
+### DELETE USER WITH ID
+DELETE http://localhost:8000/users/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyIiwicm9sZSI6ImFkbWluIiwiZXhwIjoxNjIyMjMyNTE3fQ.0CA_hmZw-deEdXJPh8BUVS3MQq3Mt0o3eZ0eh1xlB5o
+
+
+### UPDATE USER - current_user can update name / password
+### on other user if current is admin can update name / role
+PUT http://localhost:8000/users
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyIiwicm9sZSI6ImFkbWluIiwiZXhwIjoxNjIyMjMyNTE3fQ.0CA_hmZw-deEdXJPh8BUVS3MQq3Mt0o3eZ0eh1xlB5o
+
+{
+    "id": 2,
+    "name": "Johnnn"
+}
