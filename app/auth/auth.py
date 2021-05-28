@@ -15,7 +15,7 @@ import configparser
 
 
 config = configparser.ConfigParser()
-config.read('.env.example')
+config.read('.env')
 
 SECRET_KEY = config["JWT"]["SECRET_KEY"]
 ALGORITHM = config["JWT"]["ALGORITHM"]

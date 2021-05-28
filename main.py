@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from os import path
 import sys
 
-if not path.exists('.env.example'):
+if not path.exists('.env'):
     sys.exit("The app will not work properly w/o .env file.")
 
 from app.routes import users, auth, events

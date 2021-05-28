@@ -4,7 +4,7 @@ from sqlalchemy.orm import sessionmaker
 import configparser
 
 config = configparser.ConfigParser()
-config.read('.env.example')
+config.read('.env')
 
 SQLALCHEMY_DATABASE_URL = config['DATABASE']['URL']
 
