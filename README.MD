@@ -1,6 +1,7 @@
 # User Events App
 
 ![](https://img.shields.io/badge/fastAPI-python-red)
+![GitHub Pipenv locked Python version (branch)](https://img.shields.io/github/pipenv/locked/python-version/dorinmol/user_events/master)
 
 In order to play around with python and fastAPI, i made this small rest api application. The functionality behind is as usual... user crud, events crud and user authentication. Also added another layer of privilegees using roles (admin & user)
 
@@ -14,6 +15,8 @@ In order to play around with python and fastAPI, i made this small rest api appl
 - Duplicate **.env.example** file and add your database and other app configs
 - To start ( outside of environment - **pipenv run uvicorn main:app --reload**)
 - I think that's all
+
+[Pipenv cheatsheet](https://gist.github.com/DorinMol/aac798d55b0f0afc59f6e816f10d05fd)
 
 ---
 
