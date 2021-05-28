@@ -7,6 +7,7 @@ from passlib.context import CryptContext
 from pydantic import BaseModel
 from .utils import verify_password
 from ..database.crud.users import get_by_id
+from app.database.models import User as DBUser
 from ..database.database import SessionLocal
 from ..models.user import User
 from sqlalchemy.orm import Session
@@ -42,9 +43,9 @@ def authenticate_user(password: str, password_to_check: str):
     return verify_password(password_to_check, password)
 
 
-def create_access_token(id: int):
+def create_access_token(db_user: DBUser):
     access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
-    data = {"sub": str(id)}
+    data = {"sub": str(db_user.id), "role": str(db_user.role.value)}
     to_encode = data.copy()
     if access_token_expires:
         expire = datetime.utcnow() + access_token_expires

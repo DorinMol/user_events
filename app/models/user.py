@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Optional
 from pydantic import BaseModel
 from enum import auto
 from fastapi_utils.enums import StrEnum
@@ -29,6 +29,14 @@ class UserAuth(UserBase):
 class User(UserBaseWithName):
     id: int
     events: List[Event] = []
+    role: UserRoleEnum
 
     class Config:
         orm_mode = True
+
+
+class UserUpdate(BaseModel):
+    id: int
+    name: Optional[str]
+    role: Optional[UserRoleEnum]
+    password: Optional[str]

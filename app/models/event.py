@@ -18,3 +18,8 @@ class Event(EventCreate):
 
     class Config:
         orm_mode = True
+
+
+class EventUpdate(EventBase):
+    title: Optional[str]
+    id: int

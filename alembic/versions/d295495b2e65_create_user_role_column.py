@@ -9,7 +9,7 @@ from alembic import op
 import sqlalchemy as sa
 from sqlalchemy.dialects.postgresql import ENUM
 from app.models.user import UserRoleEnum
-from ..utils.alembic_helpers import table_has_column
+from app.utils.alembic_helpers import table_has_column
 
 
 # revision identifiers, used by Alembic.
